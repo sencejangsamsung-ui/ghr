@@ -1,318 +1,426 @@
 <!DOCTYPE html>
 
-<html class="dark scroll-smooth" lang="ko">
-<head>
+<html class="dark scroll-smooth" lang="ko"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Global HR Innovation TF Annual Event 2026</title>
-
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;family=Montserrat:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
-
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
-tailwind.config = {
-    darkMode: "class",
-    theme: {
-        extend: {
-            colors: {
-                "on-primary-fixed-variant": "#00497b",
-                "error": "#ffb4ab",
-                "on-primary-fixed": "#001d35",
-                "primary": "#afd3ff",
-                "on-secondary-fixed": "#001d36",
-                "on-primary": "#003257",
-                "surface-container-lowest": "#031017",
-                "error-container": "#93000a",
-                "surface-tint": "#9ccaff",
-                "on-surface": "#d6e5ef",
-                "surface-container": "#132129",
-                "primary-fixed-dim": "#9ccaff",
-                "surface-variant": "#29373e",
-                "surface-dim": "#07151c",
-                "on-primary-container": "#00497a",
-                "on-tertiary-fixed-variant": "#404754",
-                "primary-container": "#76b9ff",
-                "on-secondary-fixed-variant": "#00497c",
-                "secondary-container": "#0261a3",
-                "secondary-fixed-dim": "#9ecaff",
-                "on-tertiary-fixed": "#151c27",
-                "on-surface-variant": "#c1c7d2",
-                "glow-blue": "rgba(118, 185, 255, 0.4)",
-                "tertiary": "#c9d0e0",
-                "on-secondary-container": "#bfdbff",
-                "inverse-primary": "#0062a1",
-                "surface-container-highest": "#29373e",
-                "bg-deep-navy": "#0B0F15",
-                "electric-cyan": "#00F2FF",
-                "on-error": "#690005",
-                "on-secondary": "#003258",
-                "surface-bright": "#2d3b43",
-                "inverse-on-surface": "#24323a",
-                "glass-border": "rgba(255, 255, 255, 0.15)",
-                "inverse-surface": "#d6e5ef",
-                "on-error-container": "#ffdad6",
-                "on-background": "#d6e5ef",
-                "surface": "#07151c",
-                "outline-variant": "#414750",
-                "secondary": "#9ecaff",
-                "surface-container-high": "#1e2c33",
-                "surface-container-low": "#0f1d24",
-                "secondary-fixed": "#d1e4ff",
-                "primary-fixed": "#d0e4ff",
-                "tertiary-fixed-dim": "#c0c7d7",
-                "tertiary-container": "#adb4c4",
-                "on-tertiary-container": "#3f4653",
-                "outline": "#8b919b",
-                "tertiary-fixed": "#dce2f3",
-                "background": "#07151c",
-                "bg-charcoal": "#1A1F26",
-                "on-tertiary": "#2a313d"
-            }
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#00497b",
+                        "error": "#ffb4ab",
+                        "on-primary-fixed": "#001d35",
+                        "primary": "#afd3ff",
+                        "on-secondary-fixed": "#001d36",
+                        "on-primary": "#003257",
+                        "surface-container-lowest": "#031017",
+                        "error-container": "#93000a",
+                        "surface-tint": "#9ccaff",
+                        "on-surface": "#d6e5ef",
+                        "surface-container": "#132129",
+                        "primary-fixed-dim": "#9ccaff",
+                        "surface-variant": "#29373e",
+                        "surface-dim": "#07151c",
+                        "on-primary-container": "#00497a",
+                        "on-tertiary-fixed-variant": "#404754",
+                        "primary-container": "#76b9ff",
+                        "on-secondary-fixed-variant": "#00497c",
+                        "secondary-container": "#0261a3",
+                        "secondary-fixed-dim": "#9ecaff",
+                        "on-tertiary-fixed": "#151c27",
+                        "on-surface-variant": "#c1c7d2",
+                        "glow-blue": "rgba(118, 185, 255, 0.4)",
+                        "tertiary": "#c9d0e0",
+                        "on-secondary-container": "#bfdbff",
+                        "inverse-primary": "#0062a1",
+                        "surface-container-highest": "#29373e",
+                        "bg-deep-navy": "#0B0F15",
+                        "electric-cyan": "#00F2FF",
+                        "on-error": "#690005",
+                        "on-secondary": "#003258",
+                        "surface-bright": "#2d3b43",
+                        "inverse-on-surface": "#24323a",
+                        "glass-border": "rgba(255, 255, 255, 0.15)",
+                        "inverse-surface": "#d6e5ef",
+                        "on-error-container": "#ffdad6",
+                        "on-background": "#d6e5ef",
+                        "surface": "#07151c",
+                        "outline-variant": "#414750",
+                        "secondary": "#9ecaff",
+                        "surface-container-high": "#1e2c33",
+                        "surface-container-low": "#0f1d24",
+                        "secondary-fixed": "#d1e4ff",
+                        "primary-fixed": "#d0e4ff",
+                        "tertiary-fixed-dim": "#c0c7d7",
+                        "tertiary-container": "#adb4c4",
+                        "on-tertiary-container": "#3f4653",
+                        "outline": "#8b919b",
+                        "tertiary-fixed": "#dce2f3",
+                        "background": "#07151c",
+                        "bg-charcoal": "#1A1F26",
+                        "on-tertiary": "#2a313d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "unit": "8px",
+                        "margin-mobile": "20px",
+                        "gutter": "24px",
+                        "margin-desktop": "64px"
+                    },
+                    "fontFamily": {
+                        "display-lg-mobile": ["Montserrat"],
+                        "body-lg": ["Inter"],
+                        "display-lg": ["Montserrat"],
+                        "headline-md": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Montserrat"],
+                        "label-caps": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                        "display-lg": ["72px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "0.03em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "letterSpacing": "0.01em", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.2em", "fontWeight": "700"}]
+                    }
+                },
+            },
         }
-    }
-}
-</script>
-
+    </script>
 <style>
-.glass-panel {
-    background-color: rgba(19, 33, 41, 0.6);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.glow-effect {
-    box-shadow: 0 0 40px rgba(118, 185, 255, 0.15);
-}
-
-.fade-up {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-.fade-up.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.bg-pattern {
-    background-image: radial-gradient(circle at center, rgba(0, 242, 255, 0.1) 0%, transparent 70%);
-}
-
-.masonry-grid {
-    column-count: 1;
-    column-gap: 1.5rem;
-}
-
-@media (min-width: 768px) {
-    .masonry-grid {
-        column-count: 2;
-    }
-}
-
-@media (min-width: 1024px) {
-    .masonry-grid {
-        column-count: 3;
-    }
-}
-
-.masonry-item {
-    break-inside: avoid;
-    margin-bottom: 1.5rem;
-}
-
-.gallery-image {
-    cursor: zoom-in;
-}
-
-.image-modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.92);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    padding: 20px;
-}
-
-.image-modal.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.image-modal img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    border-radius: 16px;
-}
-
-.image-modal-close {
-    position: absolute;
-    top: 24px;
-    right: 24px;
-    color: white;
-    font-size: 42px;
-    cursor: pointer;
-    line-height: 1;
-    z-index: 10000;
-}
-</style>
-</head>
-
-<body class="bg-background text-on-background font-body-md min-h-screen overflow-x-hidden">
-
-<!-- IMAGE MODAL -->
-<div class="image-modal" id="imageModal">
-    <span class="image-modal-close" id="imageModalClose">&times;</span>
-    <img id="modalImage" src="" alt="Fullscreen Image"/>
-</div>
-
-<!-- HERO -->
-<section class="relative min-h-screen flex items-center justify-center px-6 pt-24 pb-16 overflow-hidden bg-pattern">
-    <div class="relative z-10 text-center max-w-4xl mx-auto fade-up">
-        <span class="inline-block px-4 py-2 rounded-full glass-panel text-primary mb-6 border border-primary/30">
-            초대 합니다 !
-        </span>
-
-        <h1 class="text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-secondary mb-6">
-            Global HR Innovation TF<br/>Annual Event 2026
-        </h1>
-
-        <p class="text-xl text-on-surface-variant mb-12">
-            올해도 어김없이 웃음이 가득한 자리를 준비 했습니다.
-        </p>
-
-        <div class="glass-panel rounded-2xl p-6 inline-block glow-effect">
-            <div class="flex items-center gap-4 text-electric-cyan text-xl">
-                <span class="material-symbols-outlined text-3xl">calendar_month</span>
-                <span>2026.06.05 | 18:30</span>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- GALLERY -->
-<section class="py-32 px-6 max-w-7xl mx-auto relative z-10" id="gallery">
-
-    <div class="text-center mb-16 fade-up">
-        <h2 class="text-5xl md:text-7xl text-on-surface mb-4 font-bold">
-            추억 갤러리
-        </h2>
-
-        <p class="text-xl text-on-surface-variant">
-            글로벌 인사혁신 TF - 6.5(금)에 만나요
-        </p>
-    </div>
-
-    <div class="masonry-grid fade-up">
-
-        <!-- ITEM -->
-        <div class="masonry-item glass-panel rounded-2xl overflow-hidden group">
-            <div class="relative w-full h-0 pb-[152%] overflow-hidden">
-                <img
-                    alt="Memory Gallery Image 3"
-                    class="gallery-image absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-                    src="https://lh3.googleusercontent.com/aida/ADBb0ujhEueVg0T74Sh4xJiy5kK6UR-KmoIdHPoiQ_sCWvavcM42DZZ4QWPoZ0zGJkz7Iz-xH_4D1goDcdVosfRYq4219IRbSnzjCPIuWlFRg6K5RpMKcsNEjAdMrlMUMBF_PfehEUjiRrLtnl_BFnn7_U-mzJksz45SQSSKs5Unc7h1mueaGr2M_usmfmzhjdHhN78tTlsy4upUdOdD01dXsMC6rK_RCMXU0iXggl9bUDPa7Z8W3hhq9QyPUEAv"
-                />
-            </div>
-        </div>
-
-        <!-- ITEM -->
-        <div class="masonry-item glass-panel rounded-2xl overflow-hidden group">
-            <div class="relative w-full h-0 pb-[159%] overflow-hidden">
-                <img
-                    alt="Memory Gallery Image 4"
-                    class="gallery-image absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-                    src="https://lh3.googleusercontent.com/aida/ADBb0ui3ykUeQ6BHluwlzc2PLs_0PWCQmBXN5FUXdppJ5nqLSxBErf3hQuok_E6-qntA-XHjrFSY6u3jlVcBLdPgeTERravoDWKrTJvryE90OQw-cai8EGUdXQsqTd-xEjs8N82U0uRwWYVpS2dmc8iY_XIwcwM1YxU5zlVVkPZtiQq1ANzKAd7_y9I54B_9WrwKfYs_pZIIxZTqgOtJEktaWbbKITxFn92Q_oS7GC0GrGUsXW02viAc0ucW5sIS"
-                />
-            </div>
-        </div>
-
-        <!-- ITEM -->
-        <div class="masonry-item glass-panel rounded-2xl overflow-hidden group">
-            <div class="relative w-full h-0 pb-[165%] overflow-hidden">
-                <img
-                    alt="Memory Gallery Image 5"
-                    class="gallery-image absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-                    src="https://lh3.googleusercontent.com/aida/ADBb0ugM7M30kFttNW0jGnWMJTkuPl8Jh_I3IOiwpOnga_syEhxemPZiUlB-YSrll63WH_jLD7DHE31Hexf4_qcOwZ9OuY6Myc_6laUTY9PgeYHB58VwaeC1PvoY-STgzYB2DNbDNAYnLF-GPbuUclWCJd73tO8NotR-xbmW6KDLsXkzH8b8nvsCMHXSzAgJjJRN9u6HU1DYLsPtnPG-IBdQB1o_uTolkyhjPyg9fARXpZkrpWrAk0b3o8HY-LwS"
-                />
-            </div>
-        </div>
-
-        <!-- ITEM -->
-        <div class="masonry-item glass-panel rounded-2xl overflow-hidden group">
-            <div class="relative w-full h-0 pb-[178%] overflow-hidden">
-                <img
-                    alt="Memory Gallery Image 8"
-                    class="gallery-image absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-                    src="https://lh3.googleusercontent.com/aida/ADBb0uiTUbasVfOYmaZRcbbHlE2GCiGZLrTmJ4Uj5Y9c00u4d77yu0Bn4-p39jXcKa-hO13_pyXzUDwjaBZ19Dd1xIamuHHQGi8H5CgUh0v87-t-GDF510FqWUX6jbMDiFjK3Kdqp50zConYOKVlMAzy9eknZc1vQniKaDeUUErjUVWHWMLvMVsEaCbPA_xAcLw4QHdHiGF98r-4qziJAGQJggdSknfOmMHVfPV0qTcFvhIWUS55R7V0fYgp1IV5"
-                />
-            </div>
-        </div>
-
-    </div>
-</section>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-
-    // fade-up animation
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
+        .glass-panel {
+            background-color: rgba(19, 33, 41, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .glow-effect {
+            box-shadow: 0 0 40px rgba(118, 185, 255, 0.15);
+        }
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .bg-pattern {
+            background-image: radial-gradient(circle at center, rgba(0, 242, 255, 0.1) 0%, transparent 70%);
+        }
+        .masonry-grid {
+            column-count: 1;
+            column-gap: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .masonry-grid {
+                column-count: 2;
             }
-        });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.fade-up').forEach((el) => {
-        observer.observe(el);
-    });
-
-    // IMAGE POPUP
-    const modal = document.getElementById('imageModal');
-    const modalImage = document.getElementById('modalImage');
-    const closeBtn = document.getElementById('imageModalClose');
-
-    document.querySelectorAll('.gallery-image').forEach(img => {
-        img.addEventListener('click', () => {
-            modal.classList.add('active');
-            modalImage.src = img.src;
-            document.body.style.overflow = 'hidden';
-        });
-    });
-
-    function closeModal() {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    closeBtn.addEventListener('click', closeModal);
-
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeModal();
         }
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            closeModal();
+        @media (min-width: 1024px) {
+            .masonry-grid {
+                column-count: 3;
+            }
         }
-    });
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+        }
+        @keyframes crossfade {
+            0%, 45% { opacity: 1; }
+            50%, 95% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .animate-crossfade {
+            animation: crossfade 10s ease-in-out infinite;
+        }
+        .gallery-thumb {
+            cursor: pointer;
+        }
+        #gallery-lightbox {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        #gallery-lightbox.is-open {
+            opacity: 1;
+            visibility: visible;
+        }
+        #gallery-lightbox img {
+            max-width: min(100vw, 100%);
+            max-height: min(100vh, 100%);
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation (Desktop) -->
+<nav class="hidden md:flex fixed top-0 left-0 w-full z-50 justify-between items-center px-margin-desktop py-4 bg-surface/60 backdrop-blur-xl border-b border-glass-border shadow-glow-blue/10">
+<a class="font-display-lg text-headline-md tracking-tighter text-on-surface" href="#">GHR Innovation 2026</a>
+<div class="flex items-center gap-8">
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-headline-md text-headline-md scale-95 transition-transform" href="#event">Event</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-headline-md text-headline-md" href="#venue">Venue</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-colors duration-300 font-headline-md text-headline-md" href="#gallery">Gallery</a>
+<button class="bg-gradient-to-r from-primary to-secondary text-on-primary font-headline-md text-headline-md px-6 py-2 rounded-full hover:shadow-[0_0_20px_rgba(118,185,255,0.4)] transition-all duration-300">RSVP</button>
+</div>
+</nav>
+<!-- Bottom Navigation (Mobile) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex md:hidden justify-around items-center px-4 py-3 bg-surface-container/80 backdrop-blur-2xl border-t border-glass-border shadow-glow-blue/20 rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-primary font-bold bg-primary-container/20 rounded-xl px-3 py-1 hover:bg-surface-variant/30 active:scale-90 duration-150" href="#event">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">info</span>
+<span class="font-label-caps text-label-caps">Info</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/30 active:scale-90 duration-150 rounded-xl px-3 py-1" href="#venue">
+<span class="material-symbols-outlined mb-1">location_on</span>
+<span class="font-label-caps text-label-caps">Map</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/30 active:scale-90 duration-150 rounded-xl px-3 py-1" href="#gallery">
+<span class="material-symbols-outlined mb-1">photo_library</span>
+<span class="font-label-caps text-label-caps">Gallery</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-variant/30 active:scale-90 duration-150 rounded-xl px-3 py-1" href="#">
+<span class="material-symbols-outlined mb-1">event_available</span>
+<span class="font-label-caps text-label-caps">RSVP</span>
+</a>
+</nav>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center justify-center px-margin-mobile md:px-margin-desktop pt-24 pb-16 overflow-hidden bg-pattern" id="event">
+<!-- Abstract glowing background elements -->
+<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[100px]"></div>
+<div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-electric-cyan/10 rounded-full blur-[100px]"></div>
+<div class="relative z-10 text-center max-w-4xl mx-auto fade-up">
+<span class="inline-block px-4 py-2 rounded-full glass-panel font-label-caps text-label-caps text-primary mb-6 border border-primary/30">
+                초대 합니다 !
+            </span>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-secondary mb-6 leading-tight">
+                Global HR Innovation TF<br/>Annual Event 2026
+            </h1>
+<p class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface-variant mb-12 font-light">
+                올해도 어김없이 웃음이 가득한 자리를 준비 했습니다.
+            </p>
+<div class="glass-panel rounded-2xl p-6 md:p-8 inline-block glow-effect">
+<div class="flex items-center gap-4 text-electric-cyan font-headline-md text-headline-md">
+<span class="material-symbols-outlined text-3xl">calendar_month</span>
+<span>2026.06.05 | 18:30</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Info Section (Bento Grid) -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto relative z-10">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter fade-up">
+<!-- Date Card -->
+<div class="glass-panel rounded-3xl p-8 hover:shadow-glow-blue/20 transition-all duration-500 group relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl -mr-10 -mt-10 group-hover:bg-primary/10 transition-colors"></div>
+<div class="w-14 h-14 rounded-2xl bg-surface-variant flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-primary text-3xl">event</span>
+</div>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-2">DATE &amp; TIME</h3>
+<p class="font-headline-md text-headline-md text-on-surface mb-1">2026년 6월 5일 (금)</p>
+<p class="font-body-lg text-body-lg text-secondary">오후 6시 30분</p>
+</div>
+<!-- Venue Info Card -->
+<div class="glass-panel rounded-3xl p-8 hover:shadow-glow-blue/20 transition-all duration-500 group relative overflow-hidden md:col-span-2">
+<div class="absolute bottom-0 right-0 w-48 h-48 bg-electric-cyan/5 rounded-full blur-3xl group-hover:bg-electric-cyan/10 transition-colors"></div>
+<div class="w-14 h-14 rounded-2xl bg-surface-variant flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-electric-cyan text-3xl">pin_drop</span>
+</div>
+<div class="flex flex-col md:flex-row gap-8 justify-between">
+<div>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-2">VENUE</h3>
+<p class="font-headline-md text-headline-md text-on-surface mb-2">천상한우 (Cheonsang Hanu)</p>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">영통 청명로 28 두성스포렉스 1층</p>
+</div>
+<div>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-2">PARKING</h3>
+<div class="flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined text-secondary">directions_car</span>
+<span class="font-body-md text-body-md">건물 내 주차장 이용</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Map Section -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop bg-surface-container-low relative" id="venue">
+<div class="max-w-container-max mx-auto fade-up">
+<div class="flex flex-col md:flex-row gap-12 items-center">
+<div class="w-full md:w-1/3">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-6">Location</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-8">
+                        영통역 인근 두성스포렉스 1층에 위치한 천상한우에서 뵙겠습니다.
+                    </p>
+<a class="inline-flex items-center gap-2 glass-panel px-6 py-3 rounded-full hover:bg-surface-variant/50 transition-colors text-primary font-headline-md text-headline-md border border-primary/30 hover:shadow-glow-blue/10" href="https://map.naver.com/p/entry/place/36338132?lng=127.0805698&amp;lat=37.2497965&amp;placePath=%2Fhome&amp;entry=plt&amp;searchType=place&amp;c=15.00,0,0,0,dh" rel="noopener noreferrer" target="_blank">
+<span>네이버 지도로 보기</span>
+<span class="material-symbols-outlined">open_in_new</span>
+</a>
+</div>
+<div class="w-full md:w-2/3 h-[400px] rounded-3xl overflow-hidden glass-panel relative group">
+<!-- Slideshow images -->
+<div class="absolute inset-0 opacity-80 group-hover:opacity-100 transition-opacity duration-500">
+<img alt="Cheonsang Hanu Exterior" class="absolute inset-0 w-full h-full object-cover" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+<img alt="Cheonsang Hanu Meat" class="absolute inset-0 w-full h-full object-cover animate-crossfade" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest to-transparent opacity-60 pointer-events-none"></div>
+<div class="absolute bottom-6 left-6 glass-panel px-4 py-2 rounded-xl flex items-center gap-3">
+<div class="w-3 h-3 rounded-full bg-electric-cyan animate-pulse"></div>
+<span class="font-body-md text-body-md font-bold text-on-surface">천상한우</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Memory Gallery Section -->
+<section class="py-32 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto relative z-10" id="gallery">
+<div class="text-center mb-16 fade-up">
+<h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-4">추억 갤러리</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">글로벌 인사혁신 TF - 6.5(금)에 만나요</p>
+</div>
+<div class="masonry-grid fade-up" id="gallery-grid" aria-label="추억 갤러리 이미지 목록"></div>
+<!-- Gallery lightbox -->
+<div class="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 md:p-8" id="gallery-lightbox" role="dialog" aria-modal="true" aria-label="이미지 전체화면 보기" hidden>
+<button type="button" class="absolute top-4 right-4 md:top-6 md:right-6 z-10 w-12 h-12 rounded-full glass-panel flex items-center justify-center text-on-surface hover:text-primary transition-colors" id="lightbox-close" aria-label="닫기">
+<span class="material-symbols-outlined text-3xl">close</span>
+</button>
+<button type="button" class="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full glass-panel flex items-center justify-center text-on-surface hover:text-primary transition-colors" id="lightbox-prev" aria-label="이전 이미지">
+<span class="material-symbols-outlined text-3xl">chevron_left</span>
+</button>
+<button type="button" class="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full glass-panel flex items-center justify-center text-on-surface hover:text-primary transition-colors" id="lightbox-next" aria-label="다음 이미지">
+<span class="material-symbols-outlined text-3xl">chevron_right</span>
+</button>
+<img alt="" class="select-none" id="lightbox-image" src=""/>
+<p class="absolute bottom-6 left-1/2 -translate-x-1/2 font-label-caps text-label-caps text-on-surface-variant" id="lightbox-counter"></p>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full py-16 px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-8 bg-surface-container-lowest border-t border-glass-border/50 pb-24 md:pb-16">
+<div class="font-display-lg-mobile md:font-display-lg text-headline-md text-on-surface-variant tracking-tighter">
+            GHR Innovation 2026
+        </div>
+<div class="text-center md:text-left">
+<p class="font-body-md text-body-md text-secondary mb-2">© 2026 Global HR Innovation TF. The Lens of Innovation.</p>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center justify-center md:justify-start gap-1">
+                 Made with <a class="text-primary hover:underline flex items-center gap-1" href="https://gamma.app" rel="noopener noreferrer" target="_blank">Gamma <span class="material-symbols-outlined text-sm">open_in_new</span></a>
+</p>
+</div>
+<div class="flex gap-6">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary underline transition-all" href="#">Privacy Policy</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary underline transition-all" href="#">Contact Support</a>
+</div>
+</footer>
+<script>
+        // Simple fade-up animation observer
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
 
-});
-</script>
+            document.querySelectorAll('.fade-up').forEach((el) => {
+                observer.observe(el);
+            });
 
-</body>
-</html>
+            const GALLERY_COUNT = 33;
+            const galleryPaths = Array.from({ length: GALLERY_COUNT }, (_, i) => {
+                const num = String(i + 1).padStart(3, '0');
+                return `${num}.jpg`;
+            });
+
+            const grid = document.getElementById('gallery-grid');
+            galleryPaths.forEach((src, index) => {
+                const item = document.createElement('div');
+                item.className = 'masonry-item glass-panel rounded-2xl overflow-hidden group gallery-thumb';
+                item.dataset.index = String(index);
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = `추억 갤러리 ${String(index + 1).padStart(3, '0')}`;
+                img.loading = 'lazy';
+                img.className = 'w-full h-auto block object-cover transform group-hover:scale-105 transition-transform duration-700';
+                const overlay = document.createElement('div');
+                overlay.className = 'absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 pointer-events-none';
+                const wrapper = document.createElement('div');
+                wrapper.className = 'relative overflow-hidden';
+                wrapper.appendChild(img);
+                wrapper.appendChild(overlay);
+                item.appendChild(wrapper);
+                item.addEventListener('click', () => openLightbox(index));
+                grid.appendChild(item);
+            });
+
+            const lightbox = document.getElementById('gallery-lightbox');
+            const lightboxImg = document.getElementById('lightbox-image');
+            const lightboxCounter = document.getElementById('lightbox-counter');
+            const btnClose = document.getElementById('lightbox-close');
+            const btnPrev = document.getElementById('lightbox-prev');
+            const btnNext = document.getElementById('lightbox-next');
+            let currentIndex = 0;
+
+            function openLightbox(index) {
+                currentIndex = index;
+                updateLightbox();
+                lightbox.hidden = false;
+                lightbox.classList.add('is-open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove('is-open');
+                lightbox.hidden = true;
+                document.body.style.overflow = '';
+            }
+
+            function updateLightbox() {
+                lightboxImg.src = galleryPaths[currentIndex];
+                lightboxImg.alt = `추억 갤러리 ${String(currentIndex + 1).padStart(3, '0')}`;
+                lightboxCounter.textContent = `${currentIndex + 1} / ${GALLERY_COUNT}`;
+            }
+
+            function showPrev() {
+                currentIndex = (currentIndex - 1 + GALLERY_COUNT) % GALLERY_COUNT;
+                updateLightbox();
+            }
+
+            function showNext() {
+                currentIndex = (currentIndex + 1) % GALLERY_COUNT;
+                updateLightbox();
+            }
+
+            btnClose.addEventListener('click', closeLightbox);
+            btnPrev.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
+            btnNext.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+            lightboxImg.addEventListener('click', (e) => e.stopPropagation());
+
+            document.addEventListener('keydown', (e) => {
+                if (lightbox.hidden) return;
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowLeft') showPrev();
+                if (e.key === 'ArrowRight') showNext();
+            });
+        });
+    </script>
+</body></html>
