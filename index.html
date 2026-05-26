@@ -123,8 +123,130 @@
             opacity: 1;
             transform: translateY(0);
         }
-        .bg-pattern {
-            background-image: radial-gradient(circle at center, rgba(0, 242, 255, 0.1) 0%, transparent 70%);
+        .hero-animated-bg {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            background: linear-gradient(160deg, #031017 0%, #07151c 40%, #0a1f2e 100%);
+        }
+        .hero-mesh {
+            position: absolute;
+            inset: -60%;
+            width: 220%;
+            height: 220%;
+            background:
+                radial-gradient(ellipse 45% 35% at 15% 25%, rgba(118, 185, 255, 0.35), transparent 55%),
+                radial-gradient(ellipse 40% 30% at 85% 20%, rgba(0, 242, 255, 0.2), transparent 50%),
+                radial-gradient(ellipse 50% 40% at 70% 85%, rgba(0, 98, 161, 0.4), transparent 55%),
+                radial-gradient(ellipse 35% 45% at 25% 75%, rgba(158, 202, 255, 0.25), transparent 50%);
+            animation: hero-mesh-drift 22s ease-in-out infinite alternate;
+            will-change: transform;
+        }
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(48px);
+            opacity: 0.7;
+            will-change: transform, opacity;
+        }
+        .hero-orb--1 {
+            width: min(70vw, 380px);
+            height: min(70vw, 380px);
+            top: 10%;
+            left: -10%;
+            background: rgba(118, 185, 255, 0.35);
+            animation: hero-orb-1 18s ease-in-out infinite;
+        }
+        .hero-orb--2 {
+            width: min(55vw, 300px);
+            height: min(55vw, 300px);
+            bottom: 5%;
+            right: -5%;
+            background: rgba(0, 242, 255, 0.25);
+            animation: hero-orb-2 24s ease-in-out infinite;
+        }
+        .hero-orb--3 {
+            width: min(40vw, 220px);
+            height: min(40vw, 220px);
+            top: 45%;
+            left: 40%;
+            background: rgba(0, 98, 161, 0.45);
+            animation: hero-orb-3 20s ease-in-out infinite;
+        }
+        .hero-shimmer {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                115deg,
+                transparent 0%,
+                transparent 35%,
+                rgba(175, 211, 255, 0.06) 48%,
+                rgba(0, 242, 255, 0.1) 52%,
+                transparent 65%,
+                transparent 100%
+            );
+            background-size: 250% 250%;
+            animation: hero-shimmer 10s ease-in-out infinite;
+            pointer-events: none;
+        }
+        .hero-grid {
+            position: absolute;
+            inset: -1px;
+            background-image:
+                linear-gradient(rgba(118, 185, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(118, 185, 255, 0.04) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 20%, transparent 75%);
+            -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 20%, transparent 75%);
+            animation: hero-grid-pan 40s linear infinite;
+        }
+        .hero-vignette {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 90% 80% at 50% 50%, transparent 30%, rgba(3, 16, 23, 0.85) 100%);
+            pointer-events: none;
+        }
+        @keyframes hero-mesh-drift {
+            0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            50% { transform: translate(-4%, 3%) rotate(3deg) scale(1.06); }
+            100% { transform: translate(3%, -2%) rotate(-2deg) scale(1.02); }
+        }
+        @keyframes hero-orb-1 {
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.65; }
+            50% { transform: translate(12%, 18%) scale(1.15); opacity: 0.85; }
+        }
+        @keyframes hero-orb-2 {
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.55; }
+            50% { transform: translate(-15%, -10%) scale(1.2); opacity: 0.75; }
+        }
+        @keyframes hero-orb-3 {
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+            33% { transform: translate(8%, -12%) scale(0.9); opacity: 0.7; }
+            66% { transform: translate(-10%, 8%) scale(1.1); opacity: 0.6; }
+        }
+        @keyframes hero-shimmer {
+            0%, 100% { background-position: 100% 50%; opacity: 0.6; }
+            50% { background-position: 0% 50%; opacity: 1; }
+        }
+        @keyframes hero-grid-pan {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(40px, 40px); }
+        }
+        @media (min-width: 768px) {
+            .hero-orb { filter: blur(80px); }
+            .hero-grid { background-size: 56px 56px; }
+            @keyframes hero-grid-pan {
+                0% { transform: translate(0, 0); }
+                100% { transform: translate(56px, 56px); }
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .hero-mesh,
+            .hero-orb,
+            .hero-shimmer,
+            .hero-grid {
+                animation: none !important;
+            }
         }
         .masonry-grid {
             column-count: 1;
@@ -202,26 +324,26 @@
 </a>
 </nav>
 <!-- Hero Section -->
-<section class="relative min-h-screen flex items-center justify-center px-margin-mobile md:px-margin-desktop pt-24 pb-16 overflow-hidden bg-pattern" id="event">
-<!-- Abstract glowing background elements -->
-<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[100px]"></div>
-<div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-electric-cyan/10 rounded-full blur-[100px]"></div>
+<section class="relative min-h-screen flex items-center justify-center px-margin-mobile md:px-margin-desktop pt-24 pb-16 overflow-hidden" id="event">
+<div class="hero-animated-bg" aria-hidden="true">
+<div class="hero-mesh"></div>
+<div class="hero-orb hero-orb--1"></div>
+<div class="hero-orb hero-orb--2"></div>
+<div class="hero-orb hero-orb--3"></div>
+<div class="hero-grid"></div>
+<div class="hero-shimmer"></div>
+<div class="hero-vignette"></div>
+</div>
 <div class="relative z-10 text-center max-w-4xl mx-auto fade-up">
-<span class="inline-block px-4 py-2 rounded-full glass-panel font-label-caps text-label-caps text-primary mb-6 border border-primary/30">
+<p class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-6 font-light">
                 초대 합니다 !
-            </span>
+            </p>
 <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-secondary mb-6 leading-tight">
                 Global HR Innovation TF<br/>Annual Event 2026
             </h1>
-<p class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface-variant mb-12 font-light">
+<p class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface-variant font-light">
                 올해도 어김없이 웃음이 가득한 자리를 준비 했습니다.
             </p>
-<div class="glass-panel rounded-2xl p-6 md:p-8 inline-block glow-effect">
-<div class="flex items-center gap-4 text-electric-cyan font-headline-md text-headline-md">
-<span class="material-symbols-outlined text-3xl">calendar_month</span>
-<span>2026.06.05 | 18:30</span>
-</div>
-</div>
 </div>
 </section>
 <!-- Info Section (Bento Grid) -->
