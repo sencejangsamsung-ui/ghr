@@ -1,38 +1,76 @@
 <!DOCTYPE html>
+
 <html class="dark scroll-smooth" lang="ko">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Global HR Innovation TF Annual Event 2025</title>
+<title>Global HR Innovation TF Annual Event 2026</title>
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;family=Montserrat:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
 
-<script>
+<script id="tailwind-config">
 tailwind.config = {
     darkMode: "class",
     theme: {
         extend: {
             colors: {
-                primary: "#afd3ff",
-                secondary: "#9ecaff",
-                background: "#07151c",
-                surface: "#07151c",
-                "surface-container": "#132129",
-                "surface-container-low": "#0f1d24",
+                "on-primary-fixed-variant": "#00497b",
+                "error": "#ffb4ab",
+                "on-primary-fixed": "#001d35",
+                "primary": "#afd3ff",
+                "on-secondary-fixed": "#001d36",
+                "on-primary": "#003257",
                 "surface-container-lowest": "#031017",
-                "surface-container-high": "#1e2c33",
-                "surface-container-highest": "#29373e",
-                "surface-variant": "#29373e",
-                "on-background": "#d6e5ef",
+                "error-container": "#93000a",
+                "surface-tint": "#9ccaff",
                 "on-surface": "#d6e5ef",
+                "surface-container": "#132129",
+                "primary-fixed-dim": "#9ccaff",
+                "surface-variant": "#29373e",
+                "surface-dim": "#07151c",
+                "on-primary-container": "#00497a",
+                "on-tertiary-fixed-variant": "#404754",
+                "primary-container": "#76b9ff",
+                "on-secondary-fixed-variant": "#00497c",
+                "secondary-container": "#0261a3",
+                "secondary-fixed-dim": "#9ecaff",
+                "on-tertiary-fixed": "#151c27",
                 "on-surface-variant": "#c1c7d2",
+                "glow-blue": "rgba(118, 185, 255, 0.4)",
+                "tertiary": "#c9d0e0",
+                "on-secondary-container": "#bfdbff",
+                "inverse-primary": "#0062a1",
+                "surface-container-highest": "#29373e",
+                "bg-deep-navy": "#0B0F15",
                 "electric-cyan": "#00F2FF",
-                "glass-border": "rgba(255,255,255,0.15)"
+                "on-error": "#690005",
+                "on-secondary": "#003258",
+                "surface-bright": "#2d3b43",
+                "inverse-on-surface": "#24323a",
+                "glass-border": "rgba(255, 255, 255, 0.15)",
+                "inverse-surface": "#d6e5ef",
+                "on-error-container": "#ffdad6",
+                "on-background": "#d6e5ef",
+                "surface": "#07151c",
+                "outline-variant": "#414750",
+                "secondary": "#9ecaff",
+                "surface-container-high": "#1e2c33",
+                "surface-container-low": "#0f1d24",
+                "secondary-fixed": "#d1e4ff",
+                "primary-fixed": "#d0e4ff",
+                "tertiary-fixed-dim": "#c0c7d7",
+                "tertiary-container": "#adb4c4",
+                "on-tertiary-container": "#3f4653",
+                "outline": "#8b919b",
+                "tertiary-fixed": "#dce2f3",
+                "background": "#07151c",
+                "bg-charcoal": "#1A1F26",
+                "on-tertiary": "#2a313d"
             }
         }
     }
@@ -40,10 +78,6 @@ tailwind.config = {
 </script>
 
 <style>
-body {
-    font-family: 'Inter', sans-serif;
-}
-
 .glass-panel {
     background-color: rgba(19, 33, 41, 0.6);
     backdrop-filter: blur(20px);
@@ -92,7 +126,9 @@ body {
     margin-bottom: 1.5rem;
 }
 
-/* Fullscreen Image Modal */
+.gallery-image {
+    cursor: zoom-in;
+}
 
 .image-modal {
     position: fixed;
@@ -114,16 +150,10 @@ body {
 }
 
 .image-modal img {
-    max-width: 95%;
-    max-height: 95%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
     border-radius: 16px;
-    box-shadow: 0 0 40px rgba(0,0,0,0.5);
-    transform: scale(0.95);
-    transition: transform 0.3s ease;
-}
-
-.image-modal.active img {
-    transform: scale(1);
 }
 
 .image-modal-close {
@@ -133,175 +163,110 @@ body {
     color: white;
     font-size: 42px;
     cursor: pointer;
+    line-height: 1;
     z-index: 10000;
-    background: rgba(255,255,255,0.1);
-    width: 56px;
-    height: 56px;
-    border-radius: 9999px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(10px);
-    transition: background 0.2s ease;
-    border: none;
-}
-
-.image-modal-close:hover {
-    background: rgba(255,255,255,0.2);
 }
 </style>
 </head>
 
-<body class="bg-background text-on-background min-h-screen overflow-x-hidden">
+<body class="bg-background text-on-background font-body-md min-h-screen overflow-x-hidden">
 
-<!-- Hero -->
-<section class="relative min-h-screen flex items-center justify-center px-6 py-20 overflow-hidden bg-pattern">
-
-<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px]"></div>
-<div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-400/10 rounded-full blur-[100px]"></div>
-
-<div class="relative z-10 text-center max-w-4xl mx-auto fade-up">
-
-<span class="inline-block px-4 py-2 rounded-full glass-panel text-primary mb-6 border border-primary/30 text-xs tracking-[0.2em] font-bold">
-초대 합니다 !
-</span>
-
-<h1 class="text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-white to-cyan-300 mb-6 leading-tight">
-Global HR Innovation TF<br/>
-Annual Event 2025
-</h1>
-
-<p class="text-xl md:text-3xl text-on-surface-variant mb-12 font-light">
-올해도 어김없이 웃음이 가득한 자리를 준비 했습니다.
-</p>
-
-<div class="glass-panel rounded-2xl p-6 md:p-8 inline-block glow-effect">
-<div class="flex items-center gap-4 text-electric-cyan text-xl font-semibold">
-<span class="material-symbols-outlined text-3xl">calendar_month</span>
-<span>2025.06.05 | 18:30</span>
-</div>
+<!-- IMAGE MODAL -->
+<div class="image-modal" id="imageModal">
+    <span class="image-modal-close" id="imageModalClose">&times;</span>
+    <img id="modalImage" src="" alt="Fullscreen Image"/>
 </div>
 
-</div>
+<!-- HERO -->
+<section class="relative min-h-screen flex items-center justify-center px-6 pt-24 pb-16 overflow-hidden bg-pattern">
+    <div class="relative z-10 text-center max-w-4xl mx-auto fade-up">
+        <span class="inline-block px-4 py-2 rounded-full glass-panel text-primary mb-6 border border-primary/30">
+            초대 합니다 !
+        </span>
+
+        <h1 class="text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-secondary mb-6">
+            Global HR Innovation TF<br/>Annual Event 2026
+        </h1>
+
+        <p class="text-xl text-on-surface-variant mb-12">
+            올해도 어김없이 웃음이 가득한 자리를 준비 했습니다.
+        </p>
+
+        <div class="glass-panel rounded-2xl p-6 inline-block glow-effect">
+            <div class="flex items-center gap-4 text-electric-cyan text-xl">
+                <span class="material-symbols-outlined text-3xl">calendar_month</span>
+                <span>2026.06.05 | 18:30</span>
+            </div>
+        </div>
+    </div>
 </section>
 
-<!-- Gallery -->
+<!-- GALLERY -->
 <section class="py-32 px-6 max-w-7xl mx-auto relative z-10" id="gallery">
 
-<div class="text-center mb-16 fade-up">
-<h2 class="text-5xl md:text-7xl font-bold text-on-surface mb-4">
-추억 갤러리
-</h2>
+    <div class="text-center mb-16 fade-up">
+        <h2 class="text-5xl md:text-7xl text-on-surface mb-4 font-bold">
+            추억 갤러리
+        </h2>
 
-<p class="text-xl text-on-surface-variant">
-글로벌 인사혁신 TF - 6.5(금)에 만나요
-</p>
-</div>
+        <p class="text-xl text-on-surface-variant">
+            글로벌 인사혁신 TF - 6.5(금)에 만나요
+        </p>
+    </div>
 
-<div class="masonry-grid fade-up">
+    <div class="masonry-grid fade-up">
 
-<!-- Image 1 -->
-<div class="masonry-item glass-panel rounded-2xl overflow-hidden group">
-<div class="relative w-full h-0 pb-[152%] overflow-hidden">
-<img
-alt="Gallery Image"
-class="gallery-image cursor-pointer absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-src="https://picsum.photos/800/1200?random=1"
-/>
-</div>
-</div>
+        <!-- ITEM -->
+        <div class="masonry-item glass-panel rounded-2xl overflow-hidden group">
+            <div class="relative w-full h-0 pb-[152%] overflow-hidden">
+                <img
+                    alt="Memory Gallery Image 3"
+                    class="gallery-image absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                    src="https://lh3.googleusercontent.com/aida/ADBb0ujhEueVg0T74Sh4xJiy5kK6UR-KmoIdHPoiQ_sCWvavcM42DZZ4QWPoZ0zGJkz7Iz-xH_4D1goDcdVosfRYq4219IRbSnzjCPIuWlFRg6K5RpMKcsNEjAdMrlMUMBF_PfehEUjiRrLtnl_BFnn7_U-mzJksz45SQSSKs5Unc7h1mueaGr2M_usmfmzhjdHhN78tTlsy4upUdOdD01dXsMC6rK_RCMXU0iXggl9bUDPa7Z8W3hhq9QyPUEAv"
+                />
+            </div>
+        </div>
 
-<!-- Image 2 -->
-<div class="masonry-item glass-panel rounded-2xl overflow-hidden group">
-<div class="relative w-full h-0 pb-[120%] overflow-hidden">
-<img
-alt="Gallery Image"
-class="gallery-image cursor-pointer absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-src="https://picsum.photos/800/1000?random=2"
-/>
-</div>
-</div>
+        <!-- ITEM -->
+        <div class="masonry-item glass-panel rounded-2xl overflow-hidden group">
+            <div class="relative w-full h-0 pb-[159%] overflow-hidden">
+                <img
+                    alt="Memory Gallery Image 4"
+                    class="gallery-image absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                    src="https://lh3.googleusercontent.com/aida/ADBb0ui3ykUeQ6BHluwlzc2PLs_0PWCQmBXN5FUXdppJ5nqLSxBErf3hQuok_E6-qntA-XHjrFSY6u3jlVcBLdPgeTERravoDWKrTJvryE90OQw-cai8EGUdXQsqTd-xEjs8N82U0uRwWYVpS2dmc8iY_XIwcwM1YxU5zlVVkPZtiQq1ANzKAd7_y9I54B_9WrwKfYs_pZIIxZTqgOtJEktaWbbKITxFn92Q_oS7GC0GrGUsXW02viAc0ucW5sIS"
+                />
+            </div>
+        </div>
 
-<!-- Image 3 -->
-<div class="masonry-item glass-panel rounded-2xl overflow-hidden group">
-<div class="relative w-full h-0 pb-[165%] overflow-hidden">
-<img
-alt="Gallery Image"
-class="gallery-image cursor-pointer absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-src="https://picsum.photos/800/1300?random=3"
-/>
-</div>
-</div>
+        <!-- ITEM -->
+        <div class="masonry-item glass-panel rounded-2xl overflow-hidden group">
+            <div class="relative w-full h-0 pb-[165%] overflow-hidden">
+                <img
+                    alt="Memory Gallery Image 5"
+                    class="gallery-image absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                    src="https://lh3.googleusercontent.com/aida/ADBb0ugM7M30kFttNW0jGnWMJTkuPl8Jh_I3IOiwpOnga_syEhxemPZiUlB-YSrll63WH_jLD7DHE31Hexf4_qcOwZ9OuY6Myc_6laUTY9PgeYHB58VwaeC1PvoY-STgzYB2DNbDNAYnLF-GPbuUclWCJd73tO8NotR-xbmW6KDLsXkzH8b8nvsCMHXSzAgJjJRN9u6HU1DYLsPtnPG-IBdQB1o_uTolkyhjPyg9fARXpZkrpWrAk0b3o8HY-LwS"
+                />
+            </div>
+        </div>
 
-<!-- Image 4 -->
-<div class="masonry-item glass-panel rounded-2xl overflow-hidden group">
-<div class="relative w-full h-0 pb-[75%] overflow-hidden">
-<img
-alt="Gallery Image"
-class="gallery-image cursor-pointer absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-src="https://picsum.photos/1200/800?random=4"
-/>
-</div>
-</div>
+        <!-- ITEM -->
+        <div class="masonry-item glass-panel rounded-2xl overflow-hidden group">
+            <div class="relative w-full h-0 pb-[178%] overflow-hidden">
+                <img
+                    alt="Memory Gallery Image 8"
+                    class="gallery-image absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                    src="https://lh3.googleusercontent.com/aida/ADBb0uiTUbasVfOYmaZRcbbHlE2GCiGZLrTmJ4Uj5Y9c00u4d77yu0Bn4-p39jXcKa-hO13_pyXzUDwjaBZ19Dd1xIamuHHQGi8H5CgUh0v87-t-GDF510FqWUX6jbMDiFjK3Kdqp50zConYOKVlMAzy9eknZc1vQniKaDeUUErjUVWHWMLvMVsEaCbPA_xAcLw4QHdHiGF98r-4qziJAGQJggdSknfOmMHVfPV0qTcFvhIWUS55R7V0fYgp1IV5"
+                />
+            </div>
+        </div>
 
-<!-- Image 5 -->
-<div class="masonry-item glass-panel rounded-2xl overflow-hidden group">
-<div class="relative w-full h-0 pb-[133%] overflow-hidden">
-<img
-alt="Gallery Image"
-class="gallery-image cursor-pointer absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-src="https://picsum.photos/900/1200?random=5"
-/>
-</div>
-</div>
-
-<!-- Image 6 -->
-<div class="masonry-item glass-panel rounded-2xl overflow-hidden group">
-<div class="relative w-full h-0 pb-[72%] overflow-hidden">
-<img
-alt="Gallery Image"
-class="gallery-image cursor-pointer absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
-src="https://picsum.photos/1200/700?random=6"
-/>
-</div>
-</div>
-
-</div>
+    </div>
 </section>
 
-<!-- Footer -->
-<footer class="w-full py-16 px-6 flex flex-col md:flex-row justify-between items-center gap-8 bg-surface-container-lowest border-t border-white/10">
-
-<div class="text-xl text-on-surface-variant tracking-tighter">
-GHR Innovation 2025
-</div>
-
-<div class="text-center md:text-left">
-<p class="text-secondary mb-2">
-© 2025 Global HR Innovation TF.
-</p>
-</div>
-
-</footer>
-
-<!-- Fullscreen Image Modal -->
-
-<div id="imageModal" class="image-modal">
-
-<button id="closeModal" class="image-modal-close">
-✕
-</button>
-
-<img id="modalImage" src="" alt="Fullscreen Image">
-
-</div>
-
 <script>
-
-// Fade-up animation
-
 document.addEventListener('DOMContentLoaded', () => {
 
+    // fade-up animation
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -314,62 +279,39 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
-});
+    // IMAGE POPUP
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    const closeBtn = document.getElementById('imageModalClose');
 
-// Gallery Fullscreen Modal
+    document.querySelectorAll('.gallery-image').forEach(img => {
+        img.addEventListener('click', () => {
+            modal.classList.add('active');
+            modalImage.src = img.src;
+            document.body.style.overflow = 'hidden';
+        });
+    });
 
-const modal = document.getElementById('imageModal');
-const modalImage = document.getElementById('modalImage');
-const closeModal = document.getElementById('closeModal');
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
 
-document.querySelectorAll('.gallery-image').forEach((img) => {
+    closeBtn.addEventListener('click', closeModal);
 
-    img.addEventListener('click', () => {
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
 
-        modalImage.src = img.src;
-        modal.classList.add('active');
-
-        document.body.style.overflow = 'hidden';
-
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeModal();
+        }
     });
 
 });
-
-// Close button
-
-closeModal.addEventListener('click', () => {
-
-    modal.classList.remove('active');
-    document.body.style.overflow = '';
-
-});
-
-// Background click close
-
-modal.addEventListener('click', (e) => {
-
-    if (e.target === modal) {
-
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-
-    }
-
-});
-
-// ESC close
-
-document.addEventListener('keydown', (e) => {
-
-    if (e.key === 'Escape') {
-
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-
-    }
-
-});
-
 </script>
 
 </body>
