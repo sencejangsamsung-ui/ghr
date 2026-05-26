@@ -248,6 +248,32 @@
                 animation: none !important;
             }
         }
+        #event.hero-fireworks {
+            height: 100vh;
+            height: 100dvh;
+            min-height: 100vh;
+            min-height: 100dvh;
+        }
+        #canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .hero-fireworks__content {
+            position: relative;
+            z-index: 10;
+        }
+        .hero-fireworks__scrim {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background: radial-gradient(ellipse 85% 70% at 50% 45%, rgba(7, 21, 28, 0.35) 0%, rgba(7, 21, 28, 0.75) 100%);
+        }
         .gallery-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -374,17 +400,10 @@
 </a>
 </nav>
 <!-- Hero Section -->
-<section class="relative min-h-screen flex items-center justify-center px-margin-mobile md:px-margin-desktop pt-24 pb-16 overflow-hidden" id="event">
-<div class="hero-animated-bg" aria-hidden="true">
-<div class="hero-mesh"></div>
-<div class="hero-orb hero-orb--1"></div>
-<div class="hero-orb hero-orb--2"></div>
-<div class="hero-orb hero-orb--3"></div>
-<div class="hero-grid"></div>
-<div class="hero-shimmer"></div>
-<div class="hero-vignette"></div>
-</div>
-<div class="relative z-10 text-center max-w-4xl mx-auto fade-up">
+<section class="hero-fireworks relative flex items-center justify-center px-margin-mobile md:px-margin-desktop pt-24 pb-16 overflow-hidden" id="event">
+<canvas id="canvas" aria-hidden="true"></canvas>
+<div class="hero-fireworks__scrim" aria-hidden="true"></div>
+<div class="hero-fireworks__content text-center max-w-4xl mx-auto fade-up">
 <p class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-6 font-light">
                 초대 합니다 !
             </p>
@@ -502,6 +521,142 @@
 <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary underline transition-all" href="#">Contact Support</a>
 </div>
 </footer>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+        $(function () {
+            var canvas = $('#canvas')[0];
+            if (!canvas) return;
+
+            var ctx = canvas.getContext('2d');
+            var listFire = [];
+            var listFirework = [];
+            var fireNumber = 10;
+            var center = { x: 0, y: 0 };
+            var range = 100;
+
+            function sizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                center.x = canvas.width / 2;
+                center.y = canvas.height / 2;
+                range = Math.min(canvas.width, canvas.height) * 0.15;
+            }
+
+            function resetFires() {
+                listFire = [];
+                listFirework = [];
+                for (var i = 0; i < fireNumber; i++) {
+                    var fire = {
+                        x: Math.random() * range / 2 - range / 4 + center.x,
+                        y: Math.random() * range * 2 + canvas.height,
+                        size: Math.random() + 0.5,
+                        fill: '#fd1',
+                        vx: Math.random() - 0.5,
+                        vy: -(Math.random() + 4),
+                        ax: Math.random() * 0.02 - 0.01,
+                        far: Math.random() * range + (center.y - range)
+                    };
+                    fire.base = { x: fire.x, y: fire.y, vx: fire.vx };
+                    listFire.push(fire);
+                }
+            }
+
+            function randColor() {
+                var r = Math.floor(Math.random() * 256);
+                var g = Math.floor(Math.random() * 256);
+                var b = Math.floor(Math.random() * 256);
+                return 'rgb(' + r + ', ' + g + ', ' + b + ')';
+            }
+
+            sizeCanvas();
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            resetFires();
+
+            $(window).on('resize', function () {
+                sizeCanvas();
+                ctx.fillStyle = '#000';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                resetFires();
+            });
+
+            function update() {
+                for (var i = 0; i < listFire.length; i++) {
+                    var fire = listFire[i];
+                    if (fire.y <= fire.far) {
+                        var color = randColor();
+                        for (var j = 0; j < fireNumber * 5; j++) {
+                            var firework = {
+                                x: fire.x,
+                                y: fire.y,
+                                size: Math.random() + 1.5,
+                                fill: color,
+                                vx: Math.random() * 5 - 2.5,
+                                vy: Math.random() * -5 + 1.5,
+                                ay: 0.05,
+                                alpha: 1,
+                                life: Math.round(Math.random() * range / 2) + range / 2
+                            };
+                            firework.base = { life: firework.life, size: firework.size };
+                            listFirework.push(firework);
+                        }
+                        fire.y = fire.base.y;
+                        fire.x = fire.base.x;
+                        fire.vx = fire.base.vx;
+                        fire.ax = Math.random() * 0.02 - 0.01;
+                    }
+                    fire.x += fire.vx;
+                    fire.y += fire.vy;
+                    fire.vx += fire.ax;
+                }
+
+                for (var k = listFirework.length - 1; k >= 0; k--) {
+                    var fw = listFirework[k];
+                    if (!fw) continue;
+                    fw.x += fw.vx;
+                    fw.y += fw.vy;
+                    fw.vy += fw.ay;
+                    fw.alpha = fw.life / fw.base.life;
+                    fw.size = fw.alpha * fw.base.size;
+                    fw.alpha = fw.alpha > 0.6 ? 1 : fw.alpha;
+                    fw.life--;
+                    if (fw.life <= 0) listFirework.splice(k, 1);
+                }
+            }
+
+            function draw() {
+                ctx.globalCompositeOperation = 'source-over';
+                ctx.globalAlpha = 0.18;
+                ctx.fillStyle = '#000';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.globalCompositeOperation = 'screen';
+                ctx.globalAlpha = 1;
+                for (var i = 0; i < listFire.length; i++) {
+                    var fire = listFire[i];
+                    ctx.beginPath();
+                    ctx.arc(fire.x, fire.y, fire.size, 0, Math.PI * 2);
+                    ctx.closePath();
+                    ctx.fillStyle = fire.fill;
+                    ctx.fill();
+                }
+                for (var j = 0; j < listFirework.length; j++) {
+                    var firework = listFirework[j];
+                    ctx.globalAlpha = firework.alpha;
+                    ctx.beginPath();
+                    ctx.arc(firework.x, firework.y, firework.size, 0, Math.PI * 2);
+                    ctx.closePath();
+                    ctx.fillStyle = firework.fill;
+                    ctx.fill();
+                }
+            }
+
+            (function loop() {
+                requestAnimationFrame(loop);
+                update();
+                draw();
+            })();
+        });
+    </script>
 <script>
         // Simple fade-up animation observer
         document.addEventListener('DOMContentLoaded', () => {
