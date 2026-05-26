@@ -248,23 +248,79 @@
                 animation: none !important;
             }
         }
-        .masonry-grid {
-            column-count: 1;
-            column-gap: 1.5rem;
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
         }
         @media (min-width: 768px) {
-            .masonry-grid {
-                column-count: 2;
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
         @media (min-width: 1024px) {
-            .masonry-grid {
-                column-count: 3;
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
-        .masonry-item {
-            break-inside: avoid;
+        .gallery-thumb {
+            cursor: pointer;
+            min-height: 0;
+        }
+        .gallery-thumb__frame {
+            position: relative;
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+            background: #132129;
+        }
+        .gallery-skeleton {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                110deg,
+                #132129 0%,
+                #1e2c33 40%,
+                #29373e 50%,
+                #1e2c33 60%,
+                #132129 100%
+            );
+            background-size: 200% 100%;
+            animation: gallery-shimmer 1.5s ease-in-out infinite;
+        }
+        @keyframes gallery-shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .gallery-thumb__frame img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.45s ease;
+        }
+        .gallery-thumb.is-loaded .gallery-skeleton {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+        }
+        .gallery-thumb.is-loaded img {
+            opacity: 1;
+        }
+        .gallery-thumb.is-error .gallery-skeleton {
+            animation: none;
+            background: #1e2c33;
+        }
+        .gallery-status {
+            text-align: center;
+            font-size: 14px;
+            color: #c1c7d2;
             margin-bottom: 1.5rem;
+            min-height: 1.5rem;
+        }
+        .gallery-status.is-hidden {
+            display: none;
         }
         @keyframes crossfade {
             0%, 45% { opacity: 1; }
@@ -273,9 +329,6 @@
         }
         .animate-crossfade {
             animation: crossfade 10s ease-in-out infinite;
-        }
-        .gallery-thumb {
-            cursor: pointer;
         }
         #gallery-lightbox {
             opacity: 0;
@@ -290,6 +343,7 @@
             max-width: min(100vw, 100%);
             max-height: min(100vh, 100%);
             object-fit: contain;
+            transition: opacity 0.25s ease;
         }
     </style>
 </head>
@@ -414,7 +468,8 @@
 <h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface mb-4">추억 갤러리</h2>
 
 </div>
-<div class="masonry-grid fade-up" id="gallery-grid" aria-label="추억 갤러리 이미지 목록"></div>
+<p class="gallery-status fade-up" id="gallery-status" aria-live="polite">사진을 불러오는 중…</p>
+<div class="gallery-grid" id="gallery-grid" aria-label="추억 갤러리 이미지 목록"></div>
 <!-- Gallery lightbox -->
 <div class="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 md:p-8" id="gallery-lightbox" role="dialog" aria-modal="true" aria-label="이미지 전체화면 보기" hidden>
 <button type="button" class="absolute top-4 right-4 md:top-6 md:right-6 z-10 w-12 h-12 rounded-full glass-panel flex items-center justify-center text-on-surface hover:text-primary transition-colors" id="lightbox-close" aria-label="닫기">
@@ -463,30 +518,128 @@
             });
 
             const GALLERY_COUNT = 33;
+            const GALLERY_INITIAL = 6;
+            const GALLERY_BATCH = 4;
             const galleryPaths = Array.from({ length: GALLERY_COUNT }, (_, i) => {
                 const num = String(i + 1).padStart(3, '0');
                 return `${num}.jpg`;
             });
 
             const grid = document.getElementById('gallery-grid');
+            const galleryStatus = document.getElementById('gallery-status');
+            const galleryImages = [];
+            let loadedCount = 0;
+
+            function updateGalleryStatus() {
+                if (loadedCount >= GALLERY_COUNT) {
+                    galleryStatus.classList.add('is-hidden');
+                    return;
+                }
+                galleryStatus.textContent = `사진 불러오는 중… (${loadedCount} / ${GALLERY_COUNT})`;
+            }
+
+            function markImageLoaded(item, ok) {
+                if (item.dataset.loadCounted === 'true') return;
+                item.dataset.loadCounted = 'true';
+                item.classList.add(ok ? 'is-loaded' : 'is-error');
+                loadedCount += 1;
+                updateGalleryStatus();
+            }
+
+            function attachImageLoad(item, img) {
+                if (img.complete && img.naturalWidth > 0) {
+                    markImageLoaded(item, true);
+                    return;
+                }
+                img.addEventListener('load', () => markImageLoaded(item, true), { once: true });
+                img.addEventListener('error', () => markImageLoaded(item, false), { once: true });
+            }
+
             galleryPaths.forEach((src, index) => {
                 const item = document.createElement('div');
-                item.className = 'masonry-item glass-panel rounded-2xl overflow-hidden group gallery-thumb';
+                item.className = 'gallery-thumb glass-panel rounded-2xl overflow-hidden group';
                 item.dataset.index = String(index);
+
+                const frame = document.createElement('div');
+                frame.className = 'gallery-thumb__frame';
+
+                const skeleton = document.createElement('div');
+                skeleton.className = 'gallery-skeleton';
+                skeleton.setAttribute('aria-hidden', 'true');
+
                 const img = document.createElement('img');
-                img.src = src;
                 img.alt = `추억 갤러리 ${String(index + 1).padStart(3, '0')}`;
-                img.loading = 'lazy';
-                img.className = 'w-full h-auto block object-cover transform group-hover:scale-105 transition-transform duration-700';
+                img.decoding = 'async';
+                img.dataset.src = src;
+                img.className = 'transform group-hover:scale-105 transition-transform duration-700';
+
                 const overlay = document.createElement('div');
-                overlay.className = 'absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 pointer-events-none';
-                const wrapper = document.createElement('div');
-                wrapper.className = 'relative overflow-hidden';
-                wrapper.appendChild(img);
-                wrapper.appendChild(overlay);
-                item.appendChild(wrapper);
+                overlay.className = 'absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500 pointer-events-none z-10';
+
+                frame.appendChild(skeleton);
+                frame.appendChild(img);
+                frame.appendChild(overlay);
+                item.appendChild(frame);
                 item.addEventListener('click', () => openLightbox(index));
                 grid.appendChild(item);
+                galleryImages.push({ item, img, index });
+            });
+
+            function loadImageEntry(entry) {
+                const { item, img } = entry;
+                if (img.dataset.loaded === 'true') return Promise.resolve();
+                img.dataset.loaded = 'true';
+                attachImageLoad(item, img);
+                img.src = img.dataset.src;
+                return new Promise((resolve) => {
+                    if (img.complete) {
+                        resolve();
+                        return;
+                    }
+                    const done = () => resolve();
+                    img.addEventListener('load', done, { once: true });
+                    img.addEventListener('error', done, { once: true });
+                });
+            }
+
+            async function loadInitialGallery() {
+                const initial = galleryImages.slice(0, GALLERY_INITIAL);
+                for (let i = 0; i < initial.length; i += GALLERY_BATCH) {
+                    const batch = initial.slice(i, i + GALLERY_BATCH);
+                    await Promise.all(batch.map(loadImageEntry));
+                }
+            }
+
+            const gallerySection = document.getElementById('gallery');
+            const galleryLoadObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    loadInitialGallery();
+                    galleryLoadObserver.disconnect();
+                });
+            }, { rootMargin: '300px 0px', threshold: 0.01 });
+
+            if (location.hash === '#gallery') {
+                loadInitialGallery();
+            } else {
+                galleryLoadObserver.observe(gallerySection);
+            }
+
+            const lazyImageObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    const img = entry.target;
+                    const idx = Number(img.closest('.gallery-thumb')?.dataset.index);
+                    if (Number.isNaN(idx)) return;
+                    loadImageEntry(galleryImages[idx]);
+                    lazyImageObserver.unobserve(img);
+                });
+            }, { rootMargin: '400px 0px', threshold: 0.01 });
+
+            galleryImages.forEach(({ img }, index) => {
+                if (index >= GALLERY_INITIAL) {
+                    lazyImageObserver.observe(img);
+                }
             });
 
             const lightbox = document.getElementById('gallery-lightbox');
@@ -511,10 +664,36 @@
                 document.body.style.overflow = '';
             }
 
+            function preloadLightboxNeighbors(index) {
+                [index - 1, index + 1].forEach((i) => {
+                    if (i < 0 || i >= GALLERY_COUNT) return;
+                    const entry = galleryImages[i];
+                    if (entry && entry.img.dataset.loaded !== 'true') {
+                        loadImageEntry(entry);
+                    }
+                    const preload = new Image();
+                    preload.src = galleryPaths[i];
+                });
+            }
+
             function updateLightbox() {
-                lightboxImg.src = galleryPaths[currentIndex];
+                const src = galleryPaths[currentIndex];
                 lightboxImg.alt = `추억 갤러리 ${String(currentIndex + 1).padStart(3, '0')}`;
                 lightboxCounter.textContent = `${currentIndex + 1} / ${GALLERY_COUNT}`;
+                const currentSrc = lightboxImg.getAttribute('src') || '';
+                if (currentSrc === src || currentSrc.endsWith('/' + src)) {
+                    preloadLightboxNeighbors(currentIndex);
+                    return;
+                }
+                lightboxImg.style.opacity = '0';
+                lightboxImg.onload = () => {
+                    lightboxImg.style.opacity = '1';
+                    preloadLightboxNeighbors(currentIndex);
+                };
+                lightboxImg.onerror = () => {
+                    lightboxImg.style.opacity = '1';
+                };
+                lightboxImg.src = src;
             }
 
             function showPrev() {
