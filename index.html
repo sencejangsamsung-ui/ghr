@@ -274,6 +274,86 @@
             pointer-events: none;
             background: radial-gradient(ellipse 85% 70% at 50% 45%, rgba(7, 21, 28, 0.35) 0%, rgba(7, 21, 28, 0.75) 100%);
         }
+        .welcome-section {
+            position: relative;
+            background: #07151c;
+            padding: 0 0 4rem;
+        }
+        @media (min-width: 768px) {
+            .welcome-section {
+                padding-bottom: 6rem;
+            }
+        }
+        .welcome-section__blend {
+            height: clamp(4rem, 12vh, 8rem);
+            background: linear-gradient(to bottom, #000 0%, #031017 45%, #07151c 100%);
+            pointer-events: none;
+        }
+        .welcome-section__glow {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            width: min(90vw, 720px);
+            height: 40%;
+            transform: translateX(-50%);
+            background: radial-gradient(ellipse at center, rgba(118, 185, 255, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .welcome-section__frame {
+            position: relative;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            background: #132129;
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.12),
+                0 24px 80px rgba(0, 0, 0, 0.55),
+                0 0 60px rgba(118, 185, 255, 0.08);
+        }
+        @media (min-width: 768px) {
+            .welcome-section__frame {
+                border-radius: 2rem;
+            }
+        }
+        .welcome-section__frame img {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: min(75vh, 560px);
+            object-fit: cover;
+            object-position: center;
+        }
+        @media (min-width: 768px) {
+            .welcome-section__frame img {
+                max-height: none;
+                object-fit: contain;
+                object-position: center;
+            }
+        }
+        .welcome-section__overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to top,
+                rgba(3, 16, 23, 0.85) 0%,
+                rgba(7, 21, 28, 0.2) 35%,
+                transparent 60%
+            );
+            pointer-events: none;
+        }
+        .welcome-section__caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 1.25rem 1.25rem;
+            text-align: center;
+            pointer-events: none;
+        }
+        @media (min-width: 768px) {
+            .welcome-section__caption {
+                padding: 2rem 2rem 1.75rem;
+            }
+        }
         .gallery-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -413,6 +493,21 @@
 <p class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface-variant font-light">
                 올해도 어김없이 웃음이 가득한 자리를 준비 했습니다.
             </p>
+</div>
+</section>
+<!-- Welcome Image -->
+<section class="welcome-section relative z-10" id="welcome" aria-label="환영 이미지">
+<div class="welcome-section__blend" aria-hidden="true"></div>
+<div class="welcome-section__glow" aria-hidden="true"></div>
+<div class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto relative">
+<figure class="welcome-section__frame fade-up">
+<img alt="Global HR Innovation TF Annual Event 2026 환영" decoding="async" loading="eager" src="welcome.jpg"/>
+<div class="welcome-section__overlay" aria-hidden="true"></div>
+<figcaption class="welcome-section__caption">
+<p class="font-label-caps text-label-caps text-primary mb-2">Welcome</p>
+<p class="font-headline-md text-headline-md text-on-surface">함께해 주셔서 감사합니다</p>
+</figcaption>
+</figure>
 </div>
 </section>
 <!-- Info Section (Bento Grid) -->
